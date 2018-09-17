@@ -27,6 +27,7 @@ class BooksApp extends React.Component {
 
   render() {
 
+    const books = APIBooks;
     return (
       <div className="app">
         {this.state.showSearchPage
@@ -34,7 +35,7 @@ class BooksApp extends React.Component {
           <SearchPage clickBack={this.clickBack} />
 
         ) : (
-          <BookPage clickSearch={this.clickSearch} />
+          <BookPage books={books} clickSearch={this.clickSearch} />
 
         )}
       </div>

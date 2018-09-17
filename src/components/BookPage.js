@@ -1,8 +1,24 @@
 import React from 'react'
+import Shelf from './Shelf'
 
 export default class BookPage extends React.Component {
+
+  putBooksOnShelf = (books) => {
+
+    const currently = books.filter(book => book.shelf === 'currentlyReading');
+    const want = books.filter(book => book.shelf === 'wantToRead');
+    const read = books.filter(book => book.shelf === 'read');
+
+    return [
+      {type: 'Currently Reading', books: currently},
+      {type: 'Want To Read', books: want},
+      {type: 'Read', books: read}
+    ]
+  }
+
   render() {
-    const { clickSearch } = this.props;
+    const { clickSearch, books } = this.props;
+    const shelves = this.putBooksOnShelf(books);
 
     return (
       <div className="list-books">
@@ -12,6 +28,7 @@ export default class BookPage extends React.Component {
         <div className="list-books-content">
           <div>
 
+            {shelves.map(shelf => <Shelf key={shelf.type} shelf={shelf}/>)}
             {/* Start Shelf */}
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
