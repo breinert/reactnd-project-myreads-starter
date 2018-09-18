@@ -1,4 +1,4 @@
-export const Books = {
+const Books = {
     bookshelf: {
         shelves: [
             {
@@ -90,4 +90,4 @@ export const Books = {
     }
 }
 
-//export const APIBooks = []
+export default Books

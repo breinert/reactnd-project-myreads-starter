@@ -9,7 +9,7 @@ const Shelf = (props) => {
     <div className="bookshelf-books">
       <ol className="books-grid">
 
-        {shelf.book.map(book => <Book key={book.id} book={book}/>)}
+        {shelf.books.map(book => <Book key={book.id} book={book}/>)}
       {/* Start Book */}
         <li>
           <div className="book">
@@ -53,3 +53,5 @@ const Shelf = (props) => {
   </div>
   )
 }
+
+export default Shelf
