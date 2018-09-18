@@ -1,19 +1,56 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import MainPage from './MainPage'
+import * as BooksAPI from '../BooksAPI'
+import Book from './Book'
 
 export default class SearchPage extends React.Component {
+  state = {
+    query: '',
+    searchedBooks: []
+  }
+
+  updateQuery = (query) => {
+    this.setState({
+      query: query
+    })
+  }
+
+  getSearchedBooks = (query) => {
+    BooksAPI.search(query).then((searchedBooks) => {
+      this.setState({ searchedBooks })
+    })
+  }
+
   render() {
+    if (this.state.query) {
+
+    } else {
+      this.setState({ searchedBooks })
+    }
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link to="./" className="close-search">Close</Link>
+          <Link to="./" component={MainPage} className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author"/>
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)}
+              />
 
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {this.state.searchedBooks.map(searchedBook => (
+              <li key={searchedBook.id}>
+                <Book book={searchedBook}
+                />
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     )
