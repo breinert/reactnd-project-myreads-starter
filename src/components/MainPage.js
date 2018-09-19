@@ -1,5 +1,4 @@
 import React from 'react'
-import Book from './Book'
 import Shelf from './Shelf'
 import SearchPage from './SearchPage';
 import { Link } from 'react-router-dom'

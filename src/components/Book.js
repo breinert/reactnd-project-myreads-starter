@@ -2,7 +2,9 @@ import React from 'react'
 
 export default class Book extends React.Component {
   render() {
-
+    // let displayedThumbnail = this.props.book.imageLinks ?
+    // this.props.book.imageLinks.thumbnail :
+    // '';
     const { book } = this.props;
     const { imageLinks, authors, title, shelf } = book;
 
@@ -27,7 +29,7 @@ export default class Book extends React.Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          {authors.map(author => (<div key={author} className="book-authors">{author}</div>))}
+          <div className="book-authors">{authors}</div>
 
         </div>
       </li>
