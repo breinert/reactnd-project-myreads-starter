@@ -49,15 +49,27 @@ export default class SearchPage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.searchedBooks.map(searchedBook => (
-              <li key={searchedBook.id}>
-                <Book book={searchedBook}
-                />
-              </li>
-            ))}
+            {this.state.searchedBooks.map(searchedBook => {
+              let currentShelf ='none';
+              this.props.books.map(book => (
+                book.id === searchedBook.id ?
+                currentShelf = book.shelf :
+                ''
+              ));
+              return (
+                <li key={searchedBook.id}>
+                  <Book
+                    book={searchedBook}
+                    moveShelf={this.props.moveShelf}
+                    shelf={currentShelf}
+                  />
+                </li>
+              );
+            })
+            }
           </ol>
         </div>
       </div>
-    )
+    );
   }
 }

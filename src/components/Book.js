@@ -2,20 +2,20 @@ import React from 'react'
 
 export default class Book extends React.Component {
   render() {
-    // let displayedThumbnail = this.props.book.imageLinks ?
-    // this.props.book.imageLinks.thumbnail :
-    // '';
     const { book } = this.props;
     const { imageLinks, authors, title, shelf } = book;
+    let displayedThumbnail = this.props.book.imageLinks ?
+    imageLinks.thumbnail :
+    '';
 
     return (
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${displayedThumbnail})` }}></div>
             <div className="book-shelf-changer">
               <select
-                onChange={(event) => book.moveShelf(
+                onChange={(event) => this.props.moveShelf(
                   this.props.book, event.target.value
                 )}
                 value={shelf}

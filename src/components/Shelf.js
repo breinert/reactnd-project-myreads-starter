@@ -8,13 +8,16 @@ const Shelf = (props) => {
     <h2 className="bookshelf-title">{shelf.type}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-
-        {shelf.books.map(book => <Book key={book.id} book={book} moveShelf={props.moveShelf}/>)}
-
+        {shelf.books.map(book => <Book
+          key={book.id}
+          book={book}
+          moveShelf={props.moveShelf}
+          currentShelf={shelf.type}
+          />
+        )}
       </ol>
     </div>
   </div>
   )
 }
-
 export default Shelf

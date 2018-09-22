@@ -30,16 +30,18 @@ export default class MainPage extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-
             {shelves.map(shelf => (
-              < Shelf key={shelf.type} shelf={shelf} />
+              <Shelf key={shelf.type} shelf={shelf} />
               ))
             }
-
           </div>
         </div>
         <div className="open-search">
-          <Link to="/search" className="open-search" component={SearchPage}>Add a book</Link>
+          <Link
+            to="/search"
+            className="open-search"
+            component={SearchPage}
+            >Add a book</Link>
         </div>
       </div>
     )
