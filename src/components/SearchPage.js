@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import MainPage from './MainPage'
 import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
 
@@ -36,7 +35,7 @@ export default class SearchPage extends React.Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link to="./" component={MainPage} className="close-search">Close</Link>
+          <Link to="./" className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"
@@ -57,13 +56,13 @@ export default class SearchPage extends React.Component {
                 ''
               ));
               return (
-                <li key={searchedBook.id}>
+                <div key={searchedBook.id}>
                   <Book
                     book={searchedBook}
                     moveShelf={this.props.moveShelf}
                     shelf={currentShelf}
                   />
-                </li>
+                </div>
               );
             })
             }

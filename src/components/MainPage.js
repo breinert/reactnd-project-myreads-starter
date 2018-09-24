@@ -1,6 +1,5 @@
 import React from 'react'
 import Shelf from './Shelf'
-import SearchPage from './SearchPage';
 import { Link } from 'react-router-dom'
 
 export default class MainPage extends React.Component {
@@ -40,7 +39,6 @@ export default class MainPage extends React.Component {
           <Link
             to="/search"
             className="open-search"
-            component={SearchPage}
             >Add a book</Link>
         </div>
       </div>
