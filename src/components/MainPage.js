@@ -4,23 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default class MainPage extends React.Component {
 
-  putBooksOnShelf = (books) => {
-
-    const currently = books.filter(book => book.shelf === 'currentlyReading');
-    const want = books.filter(book => book.shelf === 'wantToRead');
-    const read = books.filter(book => book.shelf === 'read');
-
-    return [
-      {type: 'Currently Reading', books: currently},
-      {type: 'Want To Read', books: want},
-      {type: 'Read', books: read}
-    ]
-  }
-
   render() {
-
-    const { books } = this.props;
-    const shelves = this.putBooksOnShelf(books);
 
     return (
       <div className="list-books">
@@ -29,10 +13,9 @@ export default class MainPage extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            {shelves.map(shelf => (
-              <Shelf key={shelf.type} shelf={shelf} />
-              ))
-            }
+            <Shelf moveShelf={this.props.moveShelf} name="Currently Reading" books={this.props.books.filter(book => book.shelf === "currentlyReading")} />
+            <Shelf moveShelf={this.props.moveShelf} name="Want To Read" books={this.props.books.filter(book => book.shelf === "wantToRead")} />
+            <Shelf moveShelf={this.props.moveShelf} name="Read" books={this.props.books.filter(book => book.shelf === "read")} />
           </div>
         </div>
         <div className="open-search">

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import SearchPage from './components/SearchPage'
 import MainPage from './components/MainPage'
@@ -10,18 +9,25 @@ class BooksApp extends React.Component {
   state = {
     books: []
   }
+  // load the book data
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
-
+  // function to move books between shelves
   moveShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf);
+    BooksAPI.update(book, shelf)
+    .then(resp => {
+      book.shelf = shelf;
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat([book])
+      }));
+    });
 
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
+    // BooksAPI.getAll().then((books) => {
+    //   this.setState({ books })
+    // })
   }
 
   render() {
@@ -31,21 +37,17 @@ class BooksApp extends React.Component {
         <Route exact path="/" render={() => (
           <MainPage
           books={this.state.books}
-          moveShelf={this.moveShelf} />
-        )}
-          />>
-        <nav>
-          <Link
-            to="/search"
-            className="search-books"
-            >Search</Link>
-          <Route path="/search" render={() => (
-            <SearchPage
-            books={this.state.books}
-            moveShelf={this.moveShelf} />
-            )}
+          moveShelf={this.moveShelf}
           />
-        </nav>
+        )}
+        />
+        <Route path="/search" render={() => (
+          <SearchPage
+          books={this.state.books}
+          moveShelf={this.moveShelf}
+          />
+          )}
+        />
       </div>
     )
   }

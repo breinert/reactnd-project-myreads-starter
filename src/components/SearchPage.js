@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
+import Shelf from './Shelf'
 
 export default class SearchPage extends React.Component {
   state = {
@@ -22,7 +23,7 @@ export default class SearchPage extends React.Component {
         if (searchedBooks.error) {
           this.setState({ searchedBooks: [] });
         } else {
-          this.setState({ searchedBooks });
+          this.setState({ searchedBooks: searchedBooks });
         }
       })
     } else {
@@ -31,7 +32,6 @@ export default class SearchPage extends React.Component {
   }
 
   render() {
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -43,29 +43,31 @@ export default class SearchPage extends React.Component {
               value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)}
               />
-
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.searchedBooks.map(searchedBook => {
-              let currentShelf ='none';
+            {/* {this.state.searchedBooks.map(searchedBook => {
+              let shelf = "none";
               this.props.books.map(book => (
                 book.id === searchedBook.id ?
-                currentShelf = book.shelf :
+                shelf = book.shelf :
                 ''
               ));
               return (
                 <div key={searchedBook.id}>
                   <Book
                     book={searchedBook}
-                    moveShelf={this.props.moveShelf}
-                    shelf={currentShelf}
+                    moveShelf={this.moveShelf}
+                    // shelf={this.props.shelf}
                   />
                 </div>
               );
             })
-            }
+            } */}
+            {
+              this.state.searchedBooks.map((book, key) => <Book moveShelf={this.moveShelf} book={book} key={key} />)
+          }
           </ol>
         </div>
       </div>
