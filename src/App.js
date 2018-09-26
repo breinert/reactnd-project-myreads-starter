@@ -24,15 +24,11 @@ class BooksApp extends React.Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }));
     });
-
-    // BooksAPI.getAll().then((books) => {
-    //   this.setState({ books })
-    // })
   }
 
   render() {
-
     return (
+      // set up the dom for routing and pass state to children
       <div className="app">
         <Route exact path="/" render={() => (
           <MainPage

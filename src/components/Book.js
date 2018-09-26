@@ -10,7 +10,9 @@ export default class Book extends React.Component {
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : ''})` }}></div>
             <div className="book-shelf-changer">
               <select
-                value={this.props.book.shelf || "none"}
+                // assign shelf to book; if book is not on a shelf, asign 'none'
+                value={this.props.book.shelf ||this.props.currentShelf || "none"}
+                // call fucntion to move the book to or between shelves
                 onChange={(event) => this.props.moveShelf(
                   this.props.book, event.target.value
                 )}>

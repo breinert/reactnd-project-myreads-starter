@@ -3,9 +3,7 @@ import Shelf from './Shelf'
 import { Link } from 'react-router-dom'
 
 export default class MainPage extends React.Component {
-
   render() {
-
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -13,6 +11,7 @@ export default class MainPage extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
+            {/* shelves for the books on the mainpage */}
             <Shelf moveShelf={this.props.moveShelf} name="Currently Reading" books={this.props.books.filter(book => book.shelf === "currentlyReading")} />
             <Shelf moveShelf={this.props.moveShelf} name="Want To Read" books={this.props.books.filter(book => book.shelf === "wantToRead")} />
             <Shelf moveShelf={this.props.moveShelf} name="Read" books={this.props.books.filter(book => book.shelf === "read")} />
