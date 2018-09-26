@@ -13,7 +13,7 @@ Open a terminal and navigate to the reactnd-project-myreads-starter folder. Star
 
 ## Dependencies
 
-This project requires "escape-string-regexp" version "^1.0.5", "prop-types" version "^15.6.1", "react" version "^16.3.2", "react-dom" version "^16.3.2", "react-router-dom" version "^4.3.1", and the backend server found at `https://reactnd-books-api.udacity.com`.
+The dependencies required can be installed using `npm install`. This project requires "escape-string-regexp" version "^1.0.5", "prop-types" version "^15.6.1", "react" version "^16.3.2", "react-dom" version "^16.3.2", and "react-router-dom" version "^4.3.1". The backend server found at `https://reactnd-books-api.udacity.com`.
 
 ## Known-Bugs
 
